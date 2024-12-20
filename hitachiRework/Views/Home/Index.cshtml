@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="form-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                    <div class="form-container">
+                        @*<div class="form-icon">
+                            <span><i class="fa fa-file-alt"></i></span>
+                        </div>*@
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="PCB serial..." id="serial">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn signup" id="btnQuery">SHOW INFORMATION</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear:both;"></div>
+<br />
+<div class="row" id="results">
+    <div class="form-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-12">
+                    <div class="form-container">
+                        <div class="form-horizontal">
+                            <h3 class="title">Serial information</h3>
+                            <div class="form-group" id="tblData">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $("#results").hide();
+        $(document).ready(function () {
+            $("#btnQuery").click(function () {
+                getSerialInfo();
+            });
+            $("#serial").keyup(function (event) {
+                if (event.which === 13) {
+                    if (!$("#serial").val()) {
+                        showError("Debes introducir un serial o Imprimir!");
+                    }
+                    else
+                        getSerialInfo();
+                }
+            });
+        });
+    </script>
+}
